@@ -10,7 +10,7 @@ namespace Entidades
     {
         static string ValidarOperador(string operador)
         {
-            string operadorRetornado = " ";
+            string operadorRetornado;
 
             switch(operador)
             {
@@ -33,7 +33,37 @@ namespace Entidades
 
             return operadorRetornado;
         }
-        public static void Testear()
+        public static double Operar(Numero num1, Numero num2, string operador)
+        {
+            double resultado;
+            string operacion;
+
+            operacion = Calculadora.ValidarOperador(operador);
+
+            switch (operacion)
+            {
+                case "+":
+                    resultado = num1 + num2;
+                    break;
+                case "-":
+                    resultado = num1 - num2;
+                    break;
+                case "/":
+                    resultado = num1 / num2;
+                    break;
+                case "*":
+                    resultado = num1 * num2;
+                    break;
+                default:
+                    
+                    break;
+            }
+
+
+            return resultado;
+        }
+
+        public static void TestearCalculadora()
         {
             string operadorIngresado;
             string operadorRetornado;
