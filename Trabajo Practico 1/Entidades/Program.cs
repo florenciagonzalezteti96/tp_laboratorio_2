@@ -11,6 +11,12 @@ namespace Entidades
         static void Main(string[] args)
         {
             Calculadora.TestearCalculadora();
+
+            Console.WriteLine(Numero.BinarioDecimal("asasas"));
+
+            Console.WriteLine(Numero.BinarioDecimal("1000"));
+
+            Console.ReadKey();
         }
     }
 }

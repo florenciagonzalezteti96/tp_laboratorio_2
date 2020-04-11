@@ -9,37 +9,99 @@ namespace Entidades
     class Numero
     {
         double numero;
+
+        #region Constructores
         public Numero()
         {
             numero = 0;
         }
+        #endregion
+
         double ValidarNumero(string strNumero)
         {
             double numeroValidado;
 
-            double.TryParse(strNumero, out numeroValidado);
+            if(double.TryParse(strNumero, out numeroValidado) == false)
+            {
+                numeroValidado = 0;
+            }
 
             return numeroValidado;
         }
-        public static string DecimalBinario(double numero)
+
+
+        #region Operadores
+        public static double operator +(Numero numero1, Numero numero2)
+        {
+            double resultado;
+
+            resultado = numero1.numero + numero2.numero;
+
+            return resultado;
+        }
+        public static double operator -(Numero numero1, Numero numero2)
+        {
+            double resultado;
+
+            resultado = numero1.numero - numero2.numero;
+
+            return resultado;
+        }
+        public static double operator /(Numero numero1, Numero numero2)
+        {
+            double resultado;
+
+            if(numero2.numero == 0)
+            {
+                resultado = Double.MinValue;
+            }
+            else
+            {
+                resultado = numero1.numero / numero2.numero;
+            }
+            
+            return resultado;
+        }
+        public static double operator *(Numero numero1, Numero numero2)
+        {
+            double resultado;
+
+            resultado = numero1.numero * numero2.numero;
+
+            return resultado;
+        }
+        #endregion
+
+        #region Metodos
+       /* public static string DecimalBinario(double numero)
         {
             string numeroEnBinario;
             int numeroAEntero;
 
             numeroAEntero = (int) numero;
-            //numero = (int)Math.Round(numeroAConvertir);
 
             numeroEnBinario = Convert.ToString(numeroAEntero, 2);
 
             return numeroEnBinario;
-        }
-        public static double BinarioDecimal(string numeroAConvertir)
+        }*/
+        public static string BinarioDecimal(string binario)
         {
-            double numeroEnEntero = 0;
+            string sePudo;
+            int numero;
 
-            numeroEnEntero = Convert.ToInt32(numeroAConvertir, 2);
+            numero = Convert.ToInt32(binario, 2);
 
-            return numeroEnEntero;
+            if(numero == 0)
+            {
+                sePudo = "Valor invalido";
+            }
+            else
+            {
+                sePudo = Convert.ToString(numero);
+            }
+
+            return sePudo;
         }
+        #endregion
     }
 }

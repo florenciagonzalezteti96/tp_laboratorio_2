@@ -35,7 +35,7 @@ namespace Entidades
         }
         public static double Operar(Numero num1, Numero num2, string operador)
         {
-            double resultado;
+            double resultado = 0;
             string operacion;
 
             operacion = Calculadora.ValidarOperador(operador);
@@ -58,8 +58,6 @@ namespace Entidades
                     
                     break;
             }
-
-
             return resultado;
         }
 
@@ -75,8 +73,16 @@ namespace Entidades
 
             Console.WriteLine("El operador retornado es: " + operadorRetornado);
 
-            Console.ReadKey();
+            Numero numero1 = new Numero();
+            Numero numero2 = new Numero();
+
+
+
+            //Operar()
+
+            //Console.ReadKey();
 
         }
+        
     }
 }
