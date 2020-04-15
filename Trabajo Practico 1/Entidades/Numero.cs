@@ -6,29 +6,35 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    class Numero
+    public class Numero
     {
-        double numero;
+        private double numero;
 
-        #region Constructores
+        #region Constructores y Set
         public Numero()
         {
             numero = 0;
         }
-        #endregion
-
-        double ValidarNumero(string strNumero)
+        public Numero(double numero)
         {
-            double numeroValidado;
-
-            if(double.TryParse(strNumero, out numeroValidado) == false)
-            {
-                numeroValidado = 0;
-            }
-
-            return numeroValidado;
+            SetNumero = numero.ToString();
         }
-
+        public Numero(string strNumero)
+        {
+            SetNumero = strNumero;
+        }
+        private string SetNumero
+        {
+            set
+            {
+                this.numero = ValidarNumero(value);
+            }
+        }
+        #endregion
+        public static void Mostrar(Numero num)
+        {
+            Console.WriteLine(num.numero);
+        }
 
         #region Operadores
         public static double operator +(Numero numero1, Numero numero2)
@@ -51,7 +57,7 @@ namespace Entidades
         {
             double resultado;
 
-            if(numero2.numero == 0)
+            if (numero2.numero == 0)
             {
                 resultado = Double.MinValue;
             }
@@ -59,7 +65,7 @@ namespace Entidades
             {
                 resultado = numero1.numero / numero2.numero;
             }
-            
+
             return resultado;
         }
         public static double operator *(Numero numero1, Numero numero2)
@@ -73,34 +79,56 @@ namespace Entidades
         #endregion
 
         #region Metodos
-       /* public static string DecimalBinario(double numero)
+        double ValidarNumero(string strNumero)
         {
-            string numeroEnBinario;
-            int numeroAEntero;
-
-            numeroAEntero = (int) numero;
-
-            numeroEnBinario = Convert.ToString(numeroAEntero, 2);
-
-            return numeroEnBinario;
-        }*/
-        public static string BinarioDecimal(string binario)
-        {
-            string sePudo;
-            int numero;
-
-            numero = Convert.ToInt32(binario, 2);
-
-            if(numero == 0)
+            if (double.TryParse(strNumero, out double numeroValidado) == false)
             {
-                sePudo = "Valor invalido";
-            }
-            else
-            {
-                sePudo = Convert.ToString(numero);
+                numeroValidado = 0;
             }
 
-            return sePudo;
+            return numeroValidado;
+        }
+        public static string DecimalBinario(double numero)
+        {
+            return Convert.ToString((int)Math.Abs(numero), 2);
+        }
+        public static string DecimalBinario(string numero)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Valor Invalido");
+
+            if (double.TryParse(numero, out double resultado))
+            {
+                sb.Replace("Valor Invalido", DecimalBinario(resultado));
+            }
+
+            return sb.ToString();
+        }
+        public static string BinarioDecimal(string numero)
+        {
+            bool esBinario = true;
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Valor Invalido");
+
+            if(!(numero is null))
+            {
+                foreach(char auxChar in numero)
+                {
+                    if(auxChar != '0' && auxChar != '1')
+                    {
+                        esBinario = false;
+                        break;
+                    }
+                }
+            }
+
+            if (esBinario == true)
+            {
+                sb.Replace("Valor Invalido", Convert.ToInt32(numero, 2).ToString());
+            }
+
+            return sb.ToString();
         }
         #endregion
     }

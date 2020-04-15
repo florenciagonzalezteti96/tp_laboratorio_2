@@ -10,37 +10,34 @@ namespace Entidades
     {
         static string ValidarOperador(string operador)
         {
-            string operadorRetornado;
+            StringBuilder sb = new StringBuilder();
 
             switch(operador)
             {
                 case "+":
-                    operadorRetornado = operador;
+                    sb.Append(operador);
                     break;
                 case "-":
-                    operadorRetornado = operador;
+                    sb.Append(operador);
                     break;
                 case "/":
-                    operadorRetornado = operador;
+                    sb.Append(operador);
                     break;
                 case "*":
-                    operadorRetornado = operador;
+                    sb.Append(operador);
                     break;
                 default:
-                    operadorRetornado = "+";
+                    sb.Append("+");
                     break;
             }
 
-            return operadorRetornado;
+            return sb.ToString();
         }
         public static double Operar(Numero num1, Numero num2, string operador)
         {
             double resultado = 0;
-            string operacion;
 
-            operacion = Calculadora.ValidarOperador(operador);
-
-            switch (operacion)
+            switch (Calculadora.ValidarOperador(operador))
             {
                 case "+":
                     resultado = num1 + num2;
@@ -54,35 +51,8 @@ namespace Entidades
                 case "*":
                     resultado = num1 * num2;
                     break;
-                default:
-                    
-                    break;
             }
             return resultado;
         }
-
-        public static void TestearCalculadora()
-        {
-            string operadorIngresado;
-            string operadorRetornado;
-
-            Console.WriteLine("Ingrese un operador: +, -, /, * ");
-            operadorIngresado = Console.ReadLine();
-
-            operadorRetornado = ValidarOperador(operadorIngresado);
-
-            Console.WriteLine("El operador retornado es: " + operadorRetornado);
-
-            Numero numero1 = new Numero();
-            Numero numero2 = new Numero();
-
-
-
-            //Operar()
-
-            //Console.ReadKey();
-
-        }
-        
     }
 }
