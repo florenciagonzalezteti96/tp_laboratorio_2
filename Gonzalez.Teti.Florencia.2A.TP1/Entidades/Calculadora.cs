@@ -10,28 +10,22 @@ namespace Entidades
     {
         static string ValidarOperador(string operador)
         {
-            StringBuilder sb = new StringBuilder();
+            string operadorRetornado = " ";
 
             switch(operador)
             {
                 case "+":
-                    sb.Append(operador);
-                    break;
                 case "-":
-                    sb.Append(operador);
-                    break;
                 case "/":
-                    sb.Append(operador);
-                    break;
                 case "*":
-                    sb.Append(operador);
+                    operadorRetornado = operador;
                     break;
                 default:
-                    sb.Append("+");
+                    operadorRetornado = "+";
                     break;
             }
 
-            return sb.ToString();
+            return operadorRetornado;
         }
         public static double Operar(Numero num1, Numero num2, string operador)
         {

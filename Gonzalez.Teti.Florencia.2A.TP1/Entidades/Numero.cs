@@ -13,7 +13,7 @@ namespace Entidades
         #region Constructores y Set
         public Numero()
         {
-            numero = 0;
+            this.numero = 0;
         }
         public Numero(double numero)
         {
