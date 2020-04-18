@@ -1,0 +1,6 @@
+C:\Users\flore\Desktop\tp_laboratorio_2\Gonzalez.Teti.Florencia.2A.TP1\Entidades\bin\Debug\Entidades.dll
+C:\Users\flore\Desktop\tp_laboratorio_2\Gonzalez.Teti.Florencia.2A.TP1\Entidades\bin\Debug\Entidades.pdb
+C:\Users\flore\Desktop\tp_laboratorio_2\Gonzalez.Teti.Florencia.2A.TP1\Entidades\obj\Debug\Entidades.csprojAssemblyReference.cache
+C:\Users\flore\Desktop\tp_laboratorio_2\Gonzalez.Teti.Florencia.2A.TP1\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\flore\Desktop\tp_laboratorio_2\Gonzalez.Teti.Florencia.2A.TP1\Entidades\obj\Debug\Entidades.dll
+C:\Users\flore\Desktop\tp_laboratorio_2\Gonzalez.Teti.Florencia.2A.TP1\Entidades\obj\Debug\Entidades.pdb
