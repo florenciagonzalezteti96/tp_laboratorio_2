@@ -31,10 +31,6 @@ namespace Entidades
             }
         }
         #endregion
-        public static void Mostrar(Numero num)
-        {
-            Console.WriteLine(num.numero);
-        }
 
         #region Operadores
         public static double operator +(Numero numero1, Numero numero2)
