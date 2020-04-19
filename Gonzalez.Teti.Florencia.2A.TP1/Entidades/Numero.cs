@@ -33,49 +33,49 @@ namespace Entidades
         #endregion
 
         #region Operadores
-        public static double operator +(Numero numero1, Numero numero2)
+        public static double operator +(Numero n1, Numero n2)
         {
             double resultado;
 
-            resultado = numero1.numero + numero2.numero;
+            resultado = n1.numero + n2.numero;
 
             return resultado;
         }
-        public static double operator -(Numero numero1, Numero numero2)
+        public static double operator -(Numero n1, Numero n2)
         {
             double resultado;
 
-            resultado = numero1.numero - numero2.numero;
+            resultado = n1.numero - n2.numero;
 
             return resultado;
         }
-        public static double operator /(Numero numero1, Numero numero2)
+        public static double operator /(Numero n1, Numero n2)
         {
             double resultado;
 
-            if (numero2.numero == 0)
+            if (n2.numero == 0)
             {
                 resultado = Double.MinValue;
             }
             else
             {
-                resultado = numero1.numero / numero2.numero;
+                resultado = n1.numero / n2.numero;
             }
 
             return resultado;
         }
-        public static double operator *(Numero numero1, Numero numero2)
+        public static double operator *(Numero n1, Numero n2)
         {
             double resultado;
 
-            resultado = numero1.numero * numero2.numero;
+            resultado = n1.numero * n2.numero;
 
             return resultado;
         }
         #endregion
 
         #region Metodos
-        double ValidarNumero(string strNumero)
+        private double ValidarNumero(string strNumero)
         {
             if (double.TryParse(strNumero, out double numeroValidado) == false)
             {
@@ -100,16 +100,16 @@ namespace Entidades
 
             return sb.ToString();
         }
-        public static string BinarioDecimal(string numero)
+        public static string BinarioDecimal(string binario)
         {
             bool esBinario = true;
 
             StringBuilder sb = new StringBuilder();
             sb.Append("Valor Invalido");
 
-            if(!(numero is null))
+            if(!String.IsNullOrEmpty(binario))
             {
-                foreach(char auxChar in numero)
+                foreach(char auxChar in binario)
                 {
                     if(auxChar != '0' && auxChar != '1')
                     {
@@ -121,7 +121,7 @@ namespace Entidades
 
             if (esBinario == true)
             {
-                sb.Replace("Valor Invalido", Convert.ToInt32(numero, 2).ToString());
+                sb.Replace("Valor Invalido", Convert.ToInt32(binario, 2).ToString());
             }
 
             return sb.ToString();

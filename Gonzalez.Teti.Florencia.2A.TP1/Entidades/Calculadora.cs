@@ -8,7 +8,7 @@ namespace Entidades
 {
     public static class Calculadora
     {
-        static string ValidarOperador(string operador)
+        private static string ValidarOperador(string operador)
         {
             string operadorRetornado = " ";
 
