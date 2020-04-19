@@ -17,11 +17,6 @@ namespace MiCalculadora
         {
             InitializeComponent();
         }
-
-        private void FormCalculadora_Load(object sender, EventArgs e)
-        {
-
-        }
         private void FormCalculadora_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult respuesta = new DialogResult();
