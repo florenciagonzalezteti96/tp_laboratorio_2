@@ -11,7 +11,7 @@ namespace Entidades
         public Moto(EMarca marca, string codigo, ConsoleColor color) : base(codigo, marca, color) { }
 
         /// <summary>
-        /// Las motos son chicas
+        /// ReadOnly: Las motos son chicas
         /// </summary>
         protected override ETamanio Tamanio
         {

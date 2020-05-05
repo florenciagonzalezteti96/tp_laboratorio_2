@@ -10,13 +10,13 @@ namespace TP_02_2018
     class Program
     {
         static void Main(string[] args)
-        {
+            {
             // Configuración de la pantalla
             Console.SetWindowPosition(0, 0);
             Console.SetWindowSize(Console.LargestWindowWidth / 2, Console.LargestWindowHeight - 2);
 
             // Nombre del alumno
-            Console.Title = "Gonzalez Teti Florencia";
+            Console.Title = "Gonzalez.Teti.Florencia.2A";
 
             Estacionamiento estacionamiento = new Estacionamiento(6);
 
@@ -30,13 +30,13 @@ namespace TP_02_2018
             Camioneta a4 = new Camioneta(Vehiculo.EMarca.BMW, "TRE321", ConsoleColor.Green);
 
             // Agrego 8 ítems (los últimos 2 no deberían poder agregarse ni el m1 repetido) y muestro
-            estacionamiento += c1;//0
-            estacionamiento += c2;//1
-            estacionamiento += m1;//2
+            estacionamiento += c1;
+            estacionamiento += c2;
             estacionamiento += m1;
-            estacionamiento += m2;//3
-            estacionamiento += a1;//4
-            estacionamiento += a2;//5
+            estacionamiento += m1;
+            estacionamiento += m2;
+            estacionamiento += a1;
+            estacionamiento += a2;
             estacionamiento += a3;
             estacionamiento += a4;
 
@@ -48,7 +48,7 @@ namespace TP_02_2018
 
             // Quito 2 items y muestro
             estacionamiento -= c1;
-            estacionamiento -= new Moto(Vehiculo.EMarca.Honda, "ASD913", ConsoleColor.Red);
+            estacionamiento -= new Moto(Vehiculo.EMarca.Honda, "ASD913", ConsoleColor.Red);//no es el c2?
 
             Console.WriteLine(estacionamiento.ToString());
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
@@ -61,14 +61,15 @@ namespace TP_02_2018
             // Muestro solo Moto
             Console.WriteLine(Estacionamiento.Mostrar(estacionamiento, Estacionamiento.ETipo.Moto));
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
-            Console.Beep();
+            Console.ReadKey();
+            //Console.Beep(); CHEQUEAR SI TIENE QUE ESTAR O NO
             Console.Clear();
 
             // Muestro solo Automovil
-            Console.WriteLine(Estacionamiento.Mostrar(estacionamiento, Estacionamiento.ETipo.Automovil));
+            Console.WriteLine(Estacionamiento.Mostrar(estacionamiento, Estacionamiento.ETipo.Automovil));       
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
             Console.ReadKey();
-            Console.Clear();
+            Console.Clear();    
 
             // Muestro solo Camioneta
             Console.WriteLine(Estacionamiento.Mostrar(estacionamiento, Estacionamiento.ETipo.Camioneta));

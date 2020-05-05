@@ -36,7 +36,7 @@ namespace Entidades
         /// <returns>Retorna un string con todos los datos del estacionamiento y los vehiculos que en el existen (si los hay)</returns>
         public override string ToString()
         {
-            return Mostrar(this, ETipo.Todos);
+            return Estacionamiento.Mostrar(this, ETipo.Todos);
         }
         #endregion
 
@@ -54,21 +54,21 @@ namespace Entidades
             StringBuilder sb = new StringBuilder();
 
             sb.AppendFormat("Tenemos {0} lugares ocupados de un total de {1} disponibles\n", c.vehiculos.Count, c.espacioDisponible);
-            foreach (Vehiculo vehiculo in c.vehiculos)
+            foreach (Vehiculo item in c.vehiculos)
             {
                 switch (tipo)
                 {
-                    case ETipo.Camioneta:
-                        sb.AppendLine(vehiculo.Mostrar());
-                        break;
                     case ETipo.Moto:
-                        sb.AppendLine(vehiculo.Mostrar());
+                        sb.AppendLine(item.Mostrar());
                         break;
                     case ETipo.Automovil:
-                        sb.AppendLine(vehiculo.Mostrar());
+                        sb.AppendLine(item.Mostrar());
+                        break;
+                    case ETipo.Camioneta:
+                        sb.AppendLine(item.Mostrar());
                         break;
                     default:
-                        sb.AppendLine(vehiculo.Mostrar());
+                        sb.AppendLine(item.Mostrar());
                         break;
                 }
             }
@@ -86,7 +86,7 @@ namespace Entidades
         public static Estacionamiento operator +(Estacionamiento c, Vehiculo p)
         {
             bool yaExiste = false;
-            if(c.vehiculos.Count < c.espacioDisponible)
+            if (c.vehiculos.Count < c.espacioDisponible)
             {
                 foreach (Vehiculo vehiculo in c.vehiculos)
                 {
@@ -101,7 +101,7 @@ namespace Entidades
                     c.vehiculos.Add(p);
                 }
             }
-            
+
             return c;
         }
         /// <summary>

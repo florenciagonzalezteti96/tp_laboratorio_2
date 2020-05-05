@@ -27,7 +27,7 @@ namespace Entidades
             this.tipo = tipo;
         }
         /// <summary>
-        /// Los automoviles son medianos
+        /// ReadOnly: Los automoviles son medianos
         /// </summary>
         protected override ETamanio Tamanio
         {
@@ -40,7 +40,7 @@ namespace Entidades
         /// Publica los valores de los atributos del Automovil
         /// </summary>
         /// <returns>Retorna el string con el valor de los atributos de un vehiculo</returns>
-        public override string Mostrar()
+        public override sealed string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
 
