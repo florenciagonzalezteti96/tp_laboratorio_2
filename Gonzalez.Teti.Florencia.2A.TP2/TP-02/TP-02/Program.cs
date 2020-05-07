@@ -10,13 +10,13 @@ namespace TP_02_2018
     class Program
     {
         static void Main(string[] args)
-            {
+        {
             // Configuración de la pantalla
             Console.SetWindowPosition(0, 0);
             Console.SetWindowSize(Console.LargestWindowWidth / 2, Console.LargestWindowHeight - 2);
 
             // Nombre del alumno
-            Console.Title = "Gonzalez.Teti.Florencia.2A";
+            Console.Title = "Gonzalez Teti Florencia";
 
             Estacionamiento estacionamiento = new Estacionamiento(6);
 
@@ -40,7 +40,6 @@ namespace TP_02_2018
             estacionamiento += a3;
             estacionamiento += a4;
 
-
             Console.WriteLine(estacionamiento.ToString());
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
             Console.ReadKey();
@@ -48,7 +47,7 @@ namespace TP_02_2018
 
             // Quito 2 items y muestro
             estacionamiento -= c1;
-            estacionamiento -= new Moto(Vehiculo.EMarca.Honda, "ASD913", ConsoleColor.Red);//no es el c2?
+            estacionamiento -= new Moto(Vehiculo.EMarca.Honda, "ASD913", ConsoleColor.Red);
 
             Console.WriteLine(estacionamiento.ToString());
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
@@ -61,15 +60,14 @@ namespace TP_02_2018
             // Muestro solo Moto
             Console.WriteLine(Estacionamiento.Mostrar(estacionamiento, Estacionamiento.ETipo.Moto));
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
-            Console.ReadKey();
-            //Console.Beep(); CHEQUEAR SI TIENE QUE ESTAR O NO
+            Console.Beep();
             Console.Clear();
 
             // Muestro solo Automovil
-            Console.WriteLine(Estacionamiento.Mostrar(estacionamiento, Estacionamiento.ETipo.Automovil));       
+            Console.WriteLine(Estacionamiento.Mostrar(estacionamiento, Estacionamiento.ETipo.Automovil));
             Console.WriteLine("<-----------PRESIONE UNA TECLA PARA CONTINUAR----------->");
             Console.ReadKey();
-            Console.Clear();    
+            Console.Clear();
 
             // Muestro solo Camioneta
             Console.WriteLine(Estacionamiento.Mostrar(estacionamiento, Estacionamiento.ETipo.Camioneta));

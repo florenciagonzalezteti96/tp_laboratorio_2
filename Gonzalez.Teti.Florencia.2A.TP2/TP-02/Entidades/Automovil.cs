@@ -8,24 +8,42 @@ namespace Entidades
 {
     public class Automovil : Vehiculo
     {
+        private ETipo tipo;
+
+        /// <summary>
+        /// Enumerado con los posibles tipos de automoviles
+        /// </summary>
         public enum ETipo
         {
             Monovolumen, Sedan
         }
 
-        private ETipo tipo;
+        #region Constructores
 
         /// <summary>
         /// Por defecto, TIPO será Monovolumen
         /// </summary>
-        /// <param name="marca">El valor del atributo marca de la clase base Vehiculo</param>
-        /// <param name="chasis">El valor del atributo chasis de la clase base Vehiculo</param>
-        /// <param name="color">El valor del atributo color de la clase base Vehiculo</param>
+        /// <param name="marca">La marca del Automovil</param>
+        /// <param name="chasis">El chasis del Automovil</param>
+        /// <param name="color">El color del Automovil</param>
         public Automovil(Vehiculo.EMarca marca, string chasis, ConsoleColor color) : this(marca, chasis, color, ETipo.Monovolumen) { }
+        
+        /// <summary>
+        /// Inicializa los atributos de la clase base Vehiculo y el atributo tipo de cada instancia de Automovil
+        /// </summary>
+        /// <param name="marca">La marca del Automovil</param>
+        /// <param name="chasis">El chasis del Automovil</param>
+        /// <param name="color">El color del Automovil</param>
+        /// <param name="tipo">El tipo de Automovil</param>
         public Automovil(Vehiculo.EMarca marca, string chasis, ConsoleColor color, ETipo tipo) : base(chasis, marca, color)
         {
             this.tipo = tipo;
         }
+
+        #endregion
+
+        #region Propiedades
+
         /// <summary>
         /// ReadOnly: Los automoviles son medianos
         /// </summary>
@@ -36,10 +54,15 @@ namespace Entidades
                 return Vehiculo.ETamanio.Mediano;
             }
         }
+
+        #endregion
+
+        #region Metodos
+
         /// <summary>
         /// Publica los valores de los atributos del Automovil
         /// </summary>
-        /// <returns>Retorna el string con el valor de los atributos de un vehiculo</returns>
+        /// <returns>Retorna el string con el valor de los atributos de un Automovil</returns>
         public override sealed string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
@@ -52,5 +75,7 @@ namespace Entidades
 
             return sb.ToString();
         }
+
+        #endregion
     }
 }

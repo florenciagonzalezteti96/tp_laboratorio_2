@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,23 +14,38 @@ namespace Entidades
     {
         private List<Vehiculo> vehiculos;
         private int espacioDisponible;
+
+        /// <summary>
+        /// Enumerado con los posibles tipos de vehiculos en el estacionamiento
+        /// </summary>
         public enum ETipo
         {
             Moto, Automovil, Camioneta, Todos
         }
 
         #region "Constructores"
+
+        /// <summary>
+        /// Inicializa el atributo de tipo List para una instancia de Estacionamiento. No recibe parametros.
+        /// </summary>
         private Estacionamiento()
         {
             this.vehiculos = new List<Vehiculo>();
         }
+
+        /// <summary>
+        /// Inicializa el atributo de espacio disponible para una instancia de Estacionamiento
+        /// </summary>
+        /// <param name="espacioDisponible">El numero de espacios disponibles en el estacionamiento</param>
         public Estacionamiento(int espacioDisponible) : this()
         {
             this.espacioDisponible = espacioDisponible;
         }
+
         #endregion
 
         #region "Sobrecargas"
+
         /// <summary>
         /// Muestro el estacionamiento y TODOS los vehículos
         /// </summary>
@@ -38,6 +54,7 @@ namespace Entidades
         {
             return Estacionamiento.Mostrar(this, ETipo.Todos);
         }
+
         #endregion
 
         #region "Métodos"
@@ -59,13 +76,22 @@ namespace Entidades
                 switch (tipo)
                 {
                     case ETipo.Moto:
-                        sb.AppendLine(item.Mostrar());
+                        if (item is Moto)
+                        {
+                            sb.AppendLine(item.Mostrar());
+                        }
                         break;
                     case ETipo.Automovil:
-                        sb.AppendLine(item.Mostrar());
+                        if (item is Automovil)
+                        {
+                            sb.AppendLine(item.Mostrar());
+                        }
                         break;
                     case ETipo.Camioneta:
-                        sb.AppendLine(item.Mostrar());
+                        if(item is Camioneta)
+                        {
+                            sb.AppendLine(item.Mostrar());
+                        }
                         break;
                     default:
                         sb.AppendLine(item.Mostrar());
@@ -74,9 +100,11 @@ namespace Entidades
             }
             return sb.ToString();
         }
+
         #endregion
 
         #region "Operadores"
+
         /// <summary>
         /// Agregará un elemento a la lista
         /// </summary>
@@ -101,9 +129,9 @@ namespace Entidades
                     c.vehiculos.Add(p);
                 }
             }
-
             return c;
         }
+
         /// <summary>
         /// Quitará un elemento de la lista
         /// </summary>
@@ -124,6 +152,7 @@ namespace Entidades
             }
             return c;
         }
+
         #endregion
     }
 }

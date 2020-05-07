@@ -11,24 +11,44 @@ namespace Entidades
     /// </summary>
     public abstract class Vehiculo
     {
+        private EMarca marca;
+        private string chasis;
+        private ConsoleColor color;
+
+        /// <summary>
+        /// Enumerado con las posibles marcas para un Vehiculo
+        /// </summary>
         public enum EMarca
         {
             Chevrolet, Ford, Renault, Toyota, BMW, Honda
         }
+        /// <summary>
+        /// Enumerado con los posibles tamaños para un Vehiculo
+        /// </summary>
         public enum ETamanio
         {
             Chico, Mediano, Grande
         }
 
-        EMarca marca;
-        string chasis;
-        ConsoleColor color;
+        #region Constructores
+
+        /// <summary>
+        /// Inicializa los atributos de un tipo de Vehiculo
+        /// </summary>
+        /// <param name="chasis">El chasis del vehiculo</param>
+        /// <param name="marca">La marca del vehiculo</param>
+        /// <param name="color">El color del Vehiculo</param>
         public Vehiculo(string chasis, EMarca marca, ConsoleColor color)
         {
             this.marca = marca;
             this.chasis = chasis;
             this.color = color;
         }
+
+        #endregion
+
+        #region Propiedades
+
         /// <summary>
         /// ReadOnly: Retornará el tamaño
         /// </summary>
@@ -37,6 +57,11 @@ namespace Entidades
         {
             get;
         }
+
+        #endregion
+
+        #region Metodos
+
         /// <summary>
         /// Muestra los valores de los atributos del Vehiculo
         /// </summary>
@@ -46,6 +71,14 @@ namespace Entidades
             return (string)this;
         }
 
+        #endregion
+
+        #region Sobrecargas
+
+        /// <summary>
+        /// Crea un string con los datos del Vehiculo
+        /// </summary>
+        /// <param name="p">El vehiculo con los datos a cargar en el string</param>
         public static explicit operator string(Vehiculo p)
         {
             StringBuilder sb = new StringBuilder();
@@ -73,6 +106,7 @@ namespace Entidades
             }
             return retorno;
         }
+
         /// <summary>
         /// Dos vehiculos son distintos si su chasis es distinto
         /// </summary>
@@ -83,5 +117,7 @@ namespace Entidades
         {
             return !(v1 == v2);
         }
+
+        #endregion
     }
 }

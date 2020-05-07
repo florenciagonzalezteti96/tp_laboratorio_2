@@ -8,7 +8,19 @@ namespace Entidades
 {
     public class Moto : Vehiculo
     {
+        #region Constructores
+
+        /// <summary>
+        /// Inicializa los atributos de la clase base Vehiculo para cada instancia de Moto
+        /// </summary>
+        /// <param name="marca">La marca de la moto</param>
+        /// <param name="codigo">El codigo de la moto</param>
+        /// <param name="color">El color de la moto</param>
         public Moto(EMarca marca, string codigo, ConsoleColor color) : base(codigo, marca, color) { }
+
+        #endregion
+
+        #region Propiedades
 
         /// <summary>
         /// ReadOnly: Las motos son chicas
@@ -20,10 +32,15 @@ namespace Entidades
                 return ETamanio.Chico;
             }
         }
+
+        #endregion
+
+        #region Metodos
+
         /// <summary>
         /// Muestra los valores de los atributos de la Moto
         /// </summary>
-        /// <returns>Retorna el string con el valor de los atributos de un vehiculo</returns>
+        /// <returns>Retorna el string con el valor de los atributos de una Moto</returns>
         public override sealed string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
@@ -35,5 +52,7 @@ namespace Entidades
 
             return sb.ToString();
         }
+
+        #endregion
     }
 }
