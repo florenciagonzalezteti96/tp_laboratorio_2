@@ -8,7 +8,7 @@ namespace ClasesInstanciables
 {
     public class Jornada
     {
-        private List<Alumno> alumnos;
+       /* private List<Alumno> alumnos;
         private Universidad.EClases clase;
         private Profesor instructor;
 
@@ -81,6 +81,6 @@ namespace ClasesInstanciables
         {
             return base.ToString();
         }
-        #endregion
+        #endregion*/
     }
 }

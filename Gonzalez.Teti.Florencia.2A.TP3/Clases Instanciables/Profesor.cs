@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClasesInstanciables
 {
-    public sealed class Profesor
+    /*public sealed class Profesor
     {
         private Queue<Universidad.EClases> clasesDelDIa;
         private Random random;
@@ -51,5 +51,5 @@ namespace ClasesInstanciables
         }
         #endregion
 
-    }
+    }*/
 }

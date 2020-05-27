@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClasesInstanciables
 {
-    public class Universidad
+    /*public class Universidad
     {
         private List<Alumno> alumnos;
         private List<Jornada> jornada;
@@ -128,5 +128,5 @@ namespace ClasesInstanciables
             SPD
         }
         #endregion
-    }
+    }*/
 }

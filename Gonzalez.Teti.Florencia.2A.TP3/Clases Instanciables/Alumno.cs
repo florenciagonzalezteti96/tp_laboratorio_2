@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClasesInstanciables
 {
-    public sealed class Alumno : Universitario
+    /*public sealed class Alumno : Universitario
     {
         private Universidad.EClases clasesQueToma;
         private EEstadoCuenta estadoCuenta;
@@ -54,5 +54,5 @@ namespace ClasesInstanciables
             Becado
         }
         #endregion
-    }
+    }*/
 }
