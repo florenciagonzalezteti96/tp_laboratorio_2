@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Archivos\Archivos.csproj">
+      <Project>{c1c51bcc-6712-4370-aba3-c5d688f7051a}</Project>
+      <Name>Archivos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Clases Instanciables\Clases Instanciables.csproj">
       <Project>{b4215036-8805-4a19-83eb-a7ab08499982}</Project>
       <Name>Clases Instanciables</Name>

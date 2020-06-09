@@ -11,5 +11,6 @@ namespace Excepciones
         public NacionalidadInvalidaException() : this("La nacionalidad no se condice con el numero de DNI") { }
 
         public NacionalidadInvalidaException(string mensaje) : base(mensaje) { } 
+
     }
 }

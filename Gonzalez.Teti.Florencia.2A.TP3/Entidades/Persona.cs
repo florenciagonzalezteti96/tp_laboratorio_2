@@ -14,14 +14,6 @@ namespace EntidadesAbstractas
         private ENacionalidad nacionalidad;
         private string nombre;
 
-        #region Tipos Anidados
-        public enum ENacionalidad
-        {
-            Argentino,
-            Extranjero
-        }
-        #endregion
-
         #region Propiedades
         public string Apellido
         {
@@ -31,10 +23,7 @@ namespace EntidadesAbstractas
             }
             set
             {
-                if (this.ValidarNombreApellido(value) != "False")
-                {
-                    this.apellido = value;
-                }
+                this.apellido = this.ValidarNombreApellido(value);
             }
         }
         public int DNI
@@ -67,49 +56,51 @@ namespace EntidadesAbstractas
             }
             set
             {
-                if (this.ValidarNombreApellido(value) != "False")
-                {
-                    this.nombre = value;
-                }
+                this.nombre = this.ValidarNombreApellido(value);
             }
         }
         public string StringToDNI
         {
             set
             {
-                try
+
+                int dni = ValidarDni(this.Nacionalidad, value);
+                if (dni != -1)
                 {
-                    int dni = ValidarDni(this.Nacionalidad, value);
-                    if (dni != -1)
-                    {
-                        this.DNI = dni;
-                    }
+                    this.DNI = dni;
                 }
-                catch (DniInvalidoException exDni)
+                else
                 {
-                    Console.WriteLine(exDni.Message);
+                    this.DNI = 1;
                 }
-                catch (NacionalidadInvalidaException exNacionalidad)
-                {
-                    Console.WriteLine(exNacionalidad.Message);
-                }
+
             }
         }
         #endregion
 
         #region Metodos
-        public Persona() { }
+        public Persona()
+        {
+            this.Apellido = "";
+            this.DNI = 1;
+            this.Nacionalidad = ENacionalidad.Argentino;
+            this.nombre = "";
+        }
+
         public Persona(string nombre, string apellido, ENacionalidad nacionalidad) : this()
         {
             this.Nombre = nombre;
             this.Apellido = apellido;
             this.Nacionalidad = nacionalidad;
         }
+
         public Persona(string nombre, string apellido, string dni, ENacionalidad nacionalidad) : this(nombre, apellido, nacionalidad)
         {
             this.StringToDNI = dni;
         }
+
         public Persona(string nombre, string apellido, int dni, ENacionalidad nacionalidad) : this(nombre, apellido, dni.ToString(), nacionalidad) { }
+
         public override string ToString()
         {
             StringBuilder persona = new StringBuilder();
@@ -117,57 +108,86 @@ namespace EntidadesAbstractas
             persona.AppendLine("NOMBRE COMPLETO: " + this.Apellido + ", " + this.Nombre);
             persona.AppendLine("NACIONALIDAD: " + this.Nacionalidad);
 
-            return persona.ToString(); 
+            return persona.ToString();
         }
+
         private int ValidarDni(ENacionalidad nacionalidad, int dato)
         {
             int retorno = -1;
 
-            if(nacionalidad == ENacionalidad.Argentino && dato>=1 && dato<=89999999)
+            if (nacionalidad == ENacionalidad.Argentino && dato >= 1 && dato <= 89999999)
             {
                 retorno = dato;
             }
-            else if(nacionalidad == ENacionalidad.Extranjero && dato>=90000000 && dato<=99999999)
+            else if (nacionalidad == ENacionalidad.Extranjero && dato >= 90000000 && dato <= 99999999)
             {
                 retorno = dato;
             }
 
             return retorno;
         }
+
         private int ValidarDni(ENacionalidad nacionalidad, string dato)
         {
             int numeroValidado = -1;
 
-            if (int.TryParse(dato, out numeroValidado) == false)
+            try
             {
-                throw new DniInvalidoException("El DNI solo debe contener numeros");
+                if (dato.Length > 8)
+                {
+                    throw new DniInvalidoException("El dni ingresado tiene mas caracteres de los permitidos");
+                }
+                if (int.TryParse(dato, out numeroValidado) == false)
+                {
+                    throw new DniInvalidoException();
+                }
+                else if (ValidarDni(nacionalidad, numeroValidado) == -1)
+                {
+                    throw new NacionalidadInvalidaException();
+                }
+                else
+                {
+                    numeroValidado = ValidarDni(nacionalidad, numeroValidado);
+                }
             }
-            else if(ValidarDni(nacionalidad, numeroValidado) == -1)
+            catch (DniInvalidoException exDni)
             {
-                throw new NacionalidadInvalidaException();
+                Console.WriteLine(exDni.Message);
             }
-            else
+            catch (NacionalidadInvalidaException exNacionalidad)
             {
-                numeroValidado = ValidarDni(nacionalidad, numeroValidado);
+                Console.WriteLine(exNacionalidad.Message);
+            }
+            catch (OverflowException exOverflow)
+            {
+                Console.WriteLine(exOverflow.Message);
             }
 
-            return numeroValidado; 
+            return numeroValidado;
         }
+
         private string ValidarNombreApellido(string dato)
         {
-            bool esValido = true;
-
-            foreach(char letra in dato)
+            foreach (char letra in dato)
             {
-                if(Char.IsLetter(letra) == false)
+                if (Char.IsLetter(letra) == false)
                 {
-                    esValido = false;
+                    dato = "";
                     break;
                 }
             }
 
-            return esValido.ToString();
+            return dato;
         }
         #endregion
+
+        #region Tipos Anidados
+        public enum ENacionalidad
+        {
+            Argentino,
+            Extranjero
+        }
+        #endregion
+
     }
 }

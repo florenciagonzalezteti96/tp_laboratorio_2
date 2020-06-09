@@ -10,17 +10,11 @@ namespace Excepciones
     {
         public DniInvalidoException() : base("La nacionalidad no se condice con el numero de DNI") { }
 
-        public DniInvalidoException(Exception e) : this(e.Message)
-        {
+        public DniInvalidoException(Exception e) : this(e.Message) { }
 
-        }
-        public DniInvalidoException(string mensaje): base(mensaje)
-        {
+        public DniInvalidoException(string mensaje): base(mensaje) { }
 
-        }
-        public DniInvalidoException(string mensaje, Exception e) : base(mensaje, e)
-        {
+        public DniInvalidoException(string mensaje, Exception e) : base(mensaje, e) { }
 
-        }
     }
 }
