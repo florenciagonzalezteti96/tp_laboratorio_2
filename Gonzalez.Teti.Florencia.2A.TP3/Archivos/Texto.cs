@@ -5,55 +5,49 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.ComponentModel;
+using Excepciones;
 
 namespace Archivos
 {
     public class Texto : IArchivo<string>
     {
+        /// <summary>
+        /// Esta funcion permite guardar un archivo de texto con datos
+        /// </summary>
+        /// <param name="archivo">El path del archivo</param>
+        /// <param name="datos">Los datos que se guardaran en el archivo de texto</param>
+        /// <returns>Retorna true si logro guardar, caso contrario retorna false</returns>
         public bool Guardar(string archivo, string datos)
         {
             bool sePudoGuardar = false;
             Encoding codificacion = Encoding.UTF8;
 
-            string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string path = escritorio + @"\" + archivo;
-
             try
             {
-                if (Directory.Exists(escritorio))
+                using (StreamWriter swTexto = new StreamWriter(archivo, true, codificacion))
                 {
-                    using (StreamWriter swTexto = new StreamWriter(path, true, codificacion))
-                    {
-                        swTexto.WriteLine(datos);
-                        Console.WriteLine("Se guardo el archivo");
-                        sePudoGuardar = true;
-                    }
+                    swTexto.WriteLine(datos);
+                    sePudoGuardar = true;
                 }
-                else
+                if (sePudoGuardar == false)
                 {
-                    throw new DirectoryNotFoundException();
+                    throw new ArchivosException(new Exception("Ha ocurrido un error con el guardado del archivo de texto!"));
                 }
             }
-            catch (DirectoryNotFoundException exNoExisteDirectorio)
+            catch (ArchivosException ex)
             {
-                Console.WriteLine(exNoExisteDirectorio.Message);
-            }
-            catch (ArgumentNullException exPathEsNulo)
-            {
-                Console.WriteLine(exPathEsNulo.Message + exPathEsNulo.ParamName);
-            }
-            catch (ArgumentException exPathNoExiste)
-            {
-                Console.WriteLine(exPathNoExiste.Message);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Se ha producido un error al intentar guardar en el archivo.");
+                throw ex;
             }
 
             return sePudoGuardar;
         }
 
+        /// <summary>
+        /// Esta funcion permite leer un archivo de texto con datos guardados
+        /// </summary>
+        /// <param name="archivo">El path del archivo</param>
+        /// <param name="datos">El objeto en el cual se guardaran los datos leidos del archivo de texto</param>
+        /// <returns>Retorna true si logro leer, caso contrario retorna false</returns>
         public bool Leer(string archivo, out string datos)
         {
             bool sePudoLeer = false;
@@ -62,56 +56,30 @@ namespace Archivos
             StringBuilder datosRetorno = new StringBuilder();
             string lineaDeTexto;
 
-            string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string path = escritorio + @"\" + archivo;
-
             try
             {
                 datosRetorno.Append("No se pudo leer el archivo");
-                if (Directory.Exists(escritorio))
-                {
-                    if (File.Exists(path))
-                    {
-                        using (StreamReader srTexto = new StreamReader(path, codificacion, true))
-                        {
-                            datosRetorno.Clear();
-                            while ((lineaDeTexto = srTexto.ReadLine()) != null)
-                            {
-                                datosRetorno.AppendLine(lineaDeTexto);
-                            }
-                            sePudoLeer = true;
 
-                        }
-                    }
-                    else
-                    {
-                        throw new FileNotFoundException();
-                    }
-                }
-                else
+                if (File.Exists(archivo))
                 {
-                    throw new DirectoryNotFoundException();
+                    using (StreamReader srTexto = new StreamReader(archivo, codificacion, true))
+                    {
+                        datosRetorno.Clear();
+                        while ((lineaDeTexto = srTexto.ReadLine()) != null)
+                        {
+                            datosRetorno.AppendLine(lineaDeTexto);
+                        }
+                        sePudoLeer = true;
+                    }
+                }
+                if (!sePudoLeer == false)
+                {
+                    throw new ArchivosException(new Exception("Ha ocurrido un error con la lectura del archivo de texto!"));
                 }
             }
-            catch (DirectoryNotFoundException exNoExisteDirectorio)
+            catch (ArchivosException ex)
             {
-                Console.WriteLine(exNoExisteDirectorio.Message);
-            }
-            catch (FileNotFoundException exNoExisteArchivo)
-            {
-                Console.WriteLine(exNoExisteArchivo.Message);
-            }
-            catch (ArgumentNullException exPathEsNulo)
-            {
-                Console.WriteLine(exPathEsNulo.Message + exPathEsNulo.ParamName);
-            }
-            catch (ArgumentException exPathNoExiste)
-            {
-                Console.WriteLine(exPathNoExiste.Message);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Se ha producido un error al intentar leer el archivo.");
+                throw ex;
             }
 
             datos = datosRetorno.ToString();

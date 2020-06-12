@@ -18,7 +18,6 @@ namespace TestEntidades
             Alumno a1 = new Alumno(1, "Juan", "Lopez", "12234456",
             EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.Programacion,
             Alumno.EEstadoCuenta.Becado);
-
             uni += a1;
 
             try
@@ -50,73 +49,60 @@ namespace TestEntidades
             Alumno a4 = new Alumno(4, "Miguel", "Hernandez", "92264456",
             EntidadesAbstractas.Persona.ENacionalidad.Extranjero, Universidad.EClases.Legislacion,
             Alumno.EEstadoCuenta.AlDia);
-
             uni += a4;
 
             Alumno a5 = new Alumno(5, "Carlos", "Gonzalez", "12236456",
             EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.Programacion,
             Alumno.EEstadoCuenta.AlDia);
-
             uni += a5;
 
             Alumno a6 = new Alumno(6, "Juan", "Perez", "12234656",
             EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.Laboratorio,
             Alumno.EEstadoCuenta.Deudor);
-
             uni += a6;
 
             Alumno a7 = new Alumno(7, "Joaquin", "Suarez", "91122456",
             EntidadesAbstractas.Persona.ENacionalidad.Extranjero, Universidad.EClases.Laboratorio,
             Alumno.EEstadoCuenta.AlDia);
-
             uni += a7;
 
             Alumno a8 = new Alumno(8, "Rodrigo", "Smith", "22236456",
             EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.Legislacion,
             Alumno.EEstadoCuenta.AlDia);
-
             uni += a8;
 
             Profesor i1 = new Profesor(1, "Juan", "Lopez", "12224458",
             EntidadesAbstractas.Persona.ENacionalidad.Argentino);
-
             uni += i1;
 
             Profesor i2 = new Profesor(2, "Roberto", "Juarez", "32234456",
             EntidadesAbstractas.Persona.ENacionalidad.Argentino);
-
             uni += i2;
 
             try
             {
-
                 uni += Universidad.EClases.Programacion;
             }
             catch (SinProfesorException e)
             {
-
                 Console.WriteLine(e.Message);
             }
 
             try
             {
-
                 uni += Universidad.EClases.Laboratorio;
             }
             catch (SinProfesorException e)
             {
-
                 Console.WriteLine(e.Message);
             }
 
             try
             {
-
                 uni += Universidad.EClases.Legislacion;
             }
             catch (SinProfesorException e)
             {
-
                 Console.WriteLine(e.Message);
             }
 
@@ -134,9 +120,8 @@ namespace TestEntidades
             Console.ReadKey();
             Console.Clear();
 
-            /*try
+            try
             {
-
                 Universidad.Guardar(uni);
 
                 Console.WriteLine("Archivo de Universidad guardado.");
@@ -145,10 +130,9 @@ namespace TestEntidades
             {
 
                 Console.WriteLine(e.Message);
-            }*/
+            }
             try
             {
-
                 int jornada = 0;
 
                 Jornada.Guardar(uni[jornada]);
@@ -159,12 +143,11 @@ namespace TestEntidades
             }
             catch (ArchivosException e)
             {
-
                 Console.WriteLine(e.Message);
-            }
-            
 
+            }
             Console.ReadKey();
+
         }
     }
 }
