@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Archivos;
 using Excepciones;
 
-namespace ClasesInstanciables
+namespace EntidadesInstanciables
 {
     public class Universidad
     {
@@ -317,7 +317,7 @@ namespace ClasesInstanciables
             }
             catch (SinProfesorException exSinProfesor)
             {
-                Console.WriteLine(exSinProfesor.Message);
+                throw exSinProfesor;
             }
             return g;
         }
@@ -343,7 +343,7 @@ namespace ClasesInstanciables
             }
             catch (AlumnoRepetidoException exAlumnoRepetido)
             {
-                Console.WriteLine(exAlumnoRepetido.Message);
+                throw exAlumnoRepetido;
             }
 
             return u;

@@ -25,17 +25,25 @@ namespace Archivos
 
             try
             {
-                using (XmlTextWriter writer = new XmlTextWriter(archivo, codificacion))
+                if(archivo != null && datos != null)
                 {
-                    XmlSerializer ser = new XmlSerializer(typeof(T));
-                    ser.Serialize(writer, datos);
-                    writer.Close();
-                    sePudoGuardar = true;
+                    using (XmlTextWriter writer = new XmlTextWriter(archivo, codificacion))
+                    {
+                        XmlSerializer ser = new XmlSerializer(typeof(T));
+                        ser.Serialize(writer, datos);
+                        writer.Close();
+                        sePudoGuardar = true;
+                    }
+                    if (sePudoGuardar == false)
+                    {
+                        throw new ArchivosException(new Exception("Ha ocurrido un error con la serializacion XML del archivo!"));
+                    }
                 }
-                if(sePudoGuardar == false)
+                else
                 {
                     throw new ArchivosException(new Exception("Ha ocurrido un error con la serializacion XML del archivo!"));
                 }
+
             }
             catch (ArchivosException ex)
             {
@@ -56,13 +64,20 @@ namespace Archivos
 
             try
             {
-                using (XmlTextReader reader = new XmlTextReader(archivo))
+                if(archivo != null)
                 {
-                    XmlSerializer ser = new XmlSerializer(typeof(T));
-                    datos = (T)ser.Deserialize(reader);
-                    sePudoLeer = true;
+                    using (XmlTextReader reader = new XmlTextReader(archivo))
+                    {
+                        XmlSerializer ser = new XmlSerializer(typeof(T));
+                        datos = (T)ser.Deserialize(reader);
+                        sePudoLeer = true;
+                    }
+                    if (sePudoLeer == false)
+                    {
+                        throw new ArchivosException(new Exception("Ha ocurrido un error con la serializacion XML del archivo!"));
+                    }
                 }
-                if (sePudoLeer == false)
+                else
                 {
                     throw new ArchivosException(new Exception("Ha ocurrido un error con la serializacion XML del archivo!"));
                 }

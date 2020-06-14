@@ -211,11 +211,11 @@ namespace EntidadesAbstractas
             }
             catch (DniInvalidoException exDni)
             {
-                Console.WriteLine(exDni.Message);
+                throw exDni;
             }
             catch (NacionalidadInvalidaException exNacionalidad)
             {
-                Console.WriteLine(exNacionalidad.Message);
+                throw exNacionalidad;
             }
             catch (OverflowException exOverflow)
             {

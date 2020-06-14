@@ -24,12 +24,19 @@ namespace Archivos
 
             try
             {
-                using (StreamWriter swTexto = new StreamWriter(archivo, true, codificacion))
+                if(archivo != null && datos != null)
                 {
-                    swTexto.WriteLine(datos);
-                    sePudoGuardar = true;
+                    using (StreamWriter swTexto = new StreamWriter(archivo, true, codificacion))
+                    {
+                        swTexto.WriteLine(datos);
+                        sePudoGuardar = true;
+                    }
+                    if (sePudoGuardar == false)
+                    {
+                        throw new ArchivosException(new Exception("Ha ocurrido un error con el guardado del archivo de texto!"));
+                    }
                 }
-                if (sePudoGuardar == false)
+                else
                 {
                     throw new ArchivosException(new Exception("Ha ocurrido un error con el guardado del archivo de texto!"));
                 }
@@ -58,21 +65,22 @@ namespace Archivos
 
             try
             {
-                datosRetorno.Append("No se pudo leer el archivo");
-
                 if (File.Exists(archivo))
                 {
                     using (StreamReader srTexto = new StreamReader(archivo, codificacion, true))
                     {
-                        datosRetorno.Clear();
                         while ((lineaDeTexto = srTexto.ReadLine()) != null)
                         {
                             datosRetorno.AppendLine(lineaDeTexto);
                         }
                         sePudoLeer = true;
                     }
+                    if (sePudoLeer == false)
+                    {
+                        throw new ArchivosException(new Exception("Ha ocurrido un error con la lectura del archivo de texto!"));
+                    }
                 }
-                if (!sePudoLeer == false)
+                else
                 {
                     throw new ArchivosException(new Exception("Ha ocurrido un error con la lectura del archivo de texto!"));
                 }

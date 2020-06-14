@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Archivos;
 using Excepciones;
 
-namespace ClasesInstanciables
+namespace EntidadesInstanciables
 {
     public class Jornada
     {
@@ -130,7 +130,8 @@ namespace ClasesInstanciables
 
         #region Sobrecarga de operadores
         /// <summary>
-        /// Sobrecarga de operador == que evalua si un objeto de tipo Jornada y otro de tipo Alumno son iguales. Seran iguales si el atributo de clasesQueToma del objeto de tipo Alumno es igual al de clase del objeto de tipo Jornada
+        /// Sobrecarga de operador == que evalua si un objeto de tipo Jornada y otro de tipo Alumno son iguales. 
+        /// Seran iguales si el atributo de clasesQueToma del objeto de tipo Alumno es igual al de clase del objeto de tipo Jornada
         /// </summary>
         /// <param name="j">El objeto de tipo Jornada</param>
         /// <param name="a">El objeto de tipo Alumno</param>
@@ -152,7 +153,8 @@ namespace ClasesInstanciables
         }
 
         /// <summary>
-        /// Sobrecarga del operador + que agrega un objeto de tipo Alumno a la lista del atributo alumnos de un objeto de tipo Jornada. El alumno solo se agregara si no existe en la lista
+        /// Sobrecarga del operador + que agrega un objeto de tipo Alumno a la lista del atributo alumnos de un objeto de tipo Jornada. 
+        /// El alumno solo se agregara si no existe en la lista
         /// </summary>
         /// <param name="j">El objeto de tipo Jornada</param>
         /// <param name="a">El objeto de tipo Alumno</param>

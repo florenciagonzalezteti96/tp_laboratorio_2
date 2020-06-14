@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EntidadesAbstractas;
 
-namespace ClasesInstanciables
+namespace EntidadesInstanciables
 {
     public sealed class Alumno : Universitario
     {
