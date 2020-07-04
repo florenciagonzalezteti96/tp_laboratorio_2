@@ -87,7 +87,7 @@ namespace Archivos
                 throw ex;
             }
 
-            return true;
+            return sePudoLeer;
         }
     }
 }
